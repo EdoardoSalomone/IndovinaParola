@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-flex flex-column justify-content-center align-items-center bg-gradient">
+                <h2>Indovina la parola</h2>
+                <form action="" id="form-inserimento-parola">
+                    <label for="parola-input">Inserisci qui la parola:</label>
+                    <input type="text" name="inserimento-parola" id="parola-input">
+                    <label for="invia-form"></label>
+                    <input type="submit" value="invia-form" id="invia-form">
+                </form>
+                <form action="">
+                    <input id="avvia-gioco" type="submit" value="Giochiamo">
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex flex-column justify-content-center align-items-center bg-success bg-gradient">
+                <h3>Parola da Indovinare</h3>
+                <h5 id="spazio-parola-mescolata">La parola qui</h5>
+                <p>Hai a disposizione</p><p id="numero-tentativi"></p><p>Tentativi</p>
+            </div>
+        </div>
+    </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/script.js"></script>
+</body>
+</html>
