@@ -8,6 +8,7 @@ class Gioco{
     constructor() {
         this.tentativi=5;
         this.parolaGenerata='';
+        this.parolaPronta='';
     }
     rigeneraParola(){
         $.ajax('https://random-word-api.herokuapp.com/word?lang=it',{
@@ -18,13 +19,13 @@ class Gioco{
                 console.log('sei entrato nel done')
                 let parolaGrezza=JSON.stringify(data);
                 console.log(parolaGrezza);
-                let parolaPronta=rimuoviVirgoletteEParentesiQuadre(parolaGrezza);
-                console.log(parolaPronta);
+                this.parolaPronta=rimuoviVirgoletteEParentesiQuadre(parolaGrezza);
+                console.log(this.parolaPronta);
                 //let parolaGenerataJson=JSON.stringify(data);
                 //console.log(parolaGenerataJson);
                 //let oggettoParola=JSON.parse(parolaGenerataJson);
                 //da mettere dentro randomizza parola se quest'altra cosa non dovesse funzionare oggettoParola.word
-                this.parolaGenerata= randomizzaParola(parolaPronta);
+                this.parolaGenerata= randomizzaParola(this.parolaPronta);
                 console.log(this.parolaGenerata);
                 let paragrafoParolaMescolata=$('#spazio-parola-mescolata');
                 let paragrafoTentativi=$('#numero-tentativi');
@@ -38,8 +39,11 @@ class Gioco{
 
     confrontaParola(parolaInserita) {
         if (this.tentativi > 0) {
-            if (this.parolaGenerata.toLowerCase() === parolaInserita.toLowerCase()) {
+            console.log(this.parolaGenerata.toLowerCase())
+            console.log(parolaInserita.toLowerCase())
+            if (this.parolaPronta.toLowerCase() === parolaInserita.toLowerCase()) {
                 alert('Congratulazioni, hai indovinato');
+                this.rigeneraParola();
             } else {
                 let paragrafoTentativi=$('#numero-tentativi')
                 alert('Peccato, non hai indovinato!');
@@ -49,8 +53,10 @@ class Gioco{
         } else {
             this.tentativi = 5;
             this.rigeneraParola();
+            let paragrafoTentativi = $('#numero-tentativi');
+            paragrafoTentativi.html(this.tentativi);
+            }
         }
-    }
 }
 
 function randomizzaArray(array) {
@@ -80,8 +86,9 @@ $(document).ready(function (){
     gioco.rigeneraParola();
     $(document).on('submit',form,function (event){
        event.preventDefault();
-       gioco.confrontaParola(parolaInserita.text());
-       parolaInserita.val(''); //resetta input utente dopo ogni tentativo
+       console.log(parolaInserita.val().trim());
+       gioco.confrontaParola(parolaInserita.val().trim());
+       parolaInserita.val('');//resetta input utente dopo ogni tentativo
     })
 
 })
